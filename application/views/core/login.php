@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="<?php echo base_url();?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url();?>plugins/dist/css/adminlte.min.css">
+    <style>
+            .login-page, .register-page {
+			background-image: url(https://images.unsplash.com/photo-1515164920215-838e509800c2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1631&q=80);
+            }
+        </style>
 </head>
 <body class="hold-transition login-page">
         <div class="login-box">
