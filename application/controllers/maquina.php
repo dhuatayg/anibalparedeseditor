@@ -8,11 +8,13 @@ class maquina extends CI_Controller {
 		if (!$this->session->userdata("login"))
             redirect(base_url()); 
 		$this->load->model('maquina_model','maquina');
+        $this->load->model('area_model','area');
     }
     
 	public function index(){
 		$data = array(
-			'entidades' => $this->maquina->get_registros()
+			'entidades' => $this->maquina->get_registros(),
+            'areas' => $this->area->listar()
 		);
         $this->load->view("cuerpo/header");
         $this->load->view("cuerpo/nav");
@@ -36,12 +38,14 @@ class maquina extends CI_Controller {
         $maquina_nombre = $this->input->post('maquina_nombre');
         $maquina_descripcion = $this->input->post('maquina_descripcion');
         $maquina_cantidad = $this->input->post('maquina_cantidad');
+        $area_id = $this->input->post('area_id');
         $estado_id = $this->input->post('estado_id');
         $data = array(
             'maquina_codigo' => $maquina_codigo,
             'maquina_nombre' => $maquina_nombre,
             'maquina_descripcion' => $maquina_descripcion,
             'maquina_cantidad' => $maquina_cantidad,
+            'area_id' => $area_id,
             'estado_id' => $estado_id
         );
         $resultado = $this->maquina->guardar($data);
@@ -54,12 +58,14 @@ class maquina extends CI_Controller {
         $maquina_nombre = $this->input->post('maquina_nombre');
         $maquina_descripcion = $this->input->post('maquina_descripcion');
         $maquina_cantidad = $this->input->post('maquina_cantidad');
+        $area_id = $this->input->post('area_id');
         $estado_id = $this->input->post('estado_id');
         $data = array(
             'maquina_codigo' => $maquina_codigo,
             'maquina_nombre' => $maquina_nombre,
             'maquina_descripcion' => $maquina_descripcion,
             'maquina_cantidad' => $maquina_cantidad,
+            'area_id' => $area_id,
             'estado_id' => $estado_id
         );
         $resultado = $this->maquina->modificar($id, $data);

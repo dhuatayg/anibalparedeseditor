@@ -49,6 +49,7 @@ function guardar_maquina() {
 	var maquina_nombre = $("#maquina_nombre").val();
     var maquina_descripcion = $("#maquina_descripcion").val();
     var maquina_cantidad = $("#maquina_cantidad").val();
+	var area_id = $("#area_id").val();
 	var estado_id = $("#estado_id").val();
 	if (validacion(maquina_nombre, "#maquina_nombre") == false) 
 		console.log("maquina_nombre");
@@ -67,6 +68,8 @@ function guardar_maquina() {
             maquina_descripcion +
             "&maquina_cantidad=" +
 			maquina_cantidad +
+			"&area_id=" +
+			area_id +
 			"&estado_id=" +
 			estado_id;
 		console.log(dataString);
@@ -107,6 +110,7 @@ function cambiar_maquina(id) {
 			$("#maquina_nombre").val(data[0]["maquina_nombre"]);
             $("#maquina_descripcion").val(data[0]["maquina_descripcion"]);
             $("#maquina_cantidad").val(data[0]["maquina_cantidad"]);
+			$("#area_id").val(data[0]["area_id"]);
 			$("#estado_id").val(data[0]["estado_id"]);
 			$(modal_maquina).modal({ backdrop: "static", keyboard: false });
 			$(modal_maquina).modal("show");
@@ -122,6 +126,7 @@ function modificar_maquina(id) {
 	var maquina_nombre = $("#maquina_nombre").val();
     var maquina_descripcion = $("#maquina_descripcion").val();
     var maquina_cantidad = $("#maquina_cantidad").val();
+	var area_id = $("#area_id").val();
 	var estado_id = $("#estado_id").val();
 	if (validacion(maquina_nombre, "#maquina_nombre") == false) 
 		console.log("maquina_nombre");
@@ -140,6 +145,8 @@ function modificar_maquina(id) {
             maquina_descripcion +
             "&maquina_cantidad=" +
 			maquina_cantidad +
+			"&area_id=" +
+			area_id +
 			"&estado_id=" +
 			estado_id +
 			"&id=" +
