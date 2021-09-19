@@ -73,10 +73,10 @@
                                 ESTADÍSTICA </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="<?php echo base_url(); ?>produccion/productividad">Nivel de productividad</a>
+                                    <a href="<?php echo base_url(); ?>produccion/productividad">Nivel de Productividad</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url(); ?>produccion/defectuoso">Productos defectuosos</a>
+                                    <a href="<?php echo base_url(); ?>produccion/reproceso">Reproceso</a>
                                 </li>
                             </ul>
                         </li>

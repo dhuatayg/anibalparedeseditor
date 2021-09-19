@@ -51,6 +51,9 @@
         <script src="<?php echo base_url(); ?>plugins/pdfmake/build/pdfmake.min.js"></script>
         <script src="<?php echo base_url(); ?>plugins/pdfmake/build/vfs_fonts.js"></script>
         <script src="<?php echo base_url(); ?>plugins/datatables/Jszip-3.1.4/dist/jszip.min.js"></script>
+        <script src="<?php echo base_url(); ?>plugins/highcharts/highcharts.js"></script>
+        <script src="<?php echo base_url(); ?>plugins/highcharts/exporting.js"></script>
+        <script src="<?php echo base_url(); ?>plugins/highcharts/export-data.js"></script>
         <script src="<?php echo base_url(); ?>js/general.js"></script>
         <script src="<?php echo base_url(); ?>js/rol.js"></script>
         <script src="<?php echo base_url(); ?>js/usuario.js"></script> 

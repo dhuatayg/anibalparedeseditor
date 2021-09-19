@@ -1,26 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class producto_model extends CI_Model {
+class produccion_model extends CI_Model {
 
-    var $tabla = '010_producto';
+    var $tabla = '012_produccion';
     var $estado = 'estado_id';
-    var $codigo = 'producto_id';
+    var $codigo = 'produccion_id';
 
     public function get_registros(){
-        $this->db->select('p.*, c.categoria_nombre as categoria_nombre');
-        $this->db->from('010_producto p');
-        $this->db->join('008_categoria c',"p.categoria_id = c.categoria_id");
-        $this->db->where('p.estado_id !=','3');
-        $query = $this->db->get($this->tabla);
+        $this->db->select('p.*, e.estado_nombre, pr.producto_nombre');
+        $this->db->from('012_produccion p');
+        $this->db->join('001_estado e',"e.estado_id = p.estado_id");
+        $this->db->join('010_producto pr',"pr.producto_id = p.producto_id");
+        $this->db->where('p.produccion_indicador !=','0');
+        $query = $this->db->get();
         return $query->result();
     }
 
     public function listar(){
-        $this->db->select('p.*, c.categoria_nombre as categoria_nombre');
-        $this->db->from('010_producto p');
-        $this->db->join('008_categoria c',"p.categoria_id = c.categoria_id");
-        $this->db->where('p.estado_id','1');
+        $this->db->where($this->estado,'1');
         $query = $this->db->get($this->tabla);
         return $query->result();
     }
@@ -29,12 +27,6 @@ class producto_model extends CI_Model {
         $this->db->where($this->codigo,$id);
         $query = $this->db->get($this->tabla);
         return $query->result_array();
-    }
-
-    public function capturar($id){
-        $this->db->where($this->codigo,$id);
-        $query = $this->db->get($this->tabla);
-        return $query->row();
     }
 
     public function filas(){
@@ -48,18 +40,6 @@ class producto_model extends CI_Model {
             return true;
         else
             return false;
-    }
-
-    public function guardar_material($data){
-
-
-
-    }
-
-    public function guardar_maquina($data){
-
-
-
     }
 
     public function modificar($id, $data){
