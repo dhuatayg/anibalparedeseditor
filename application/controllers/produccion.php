@@ -163,4 +163,20 @@ class produccion extends CI_Controller {
         echo json_encode($resultado);
     }
 
+    public function get_data_productividad(){
+        $fecha_inicio = $this->input->post("fecha_inicio");
+        $fecha_fin = $this->input->post("fecha_fin");
+        $resultados = $this->Producciones_model->grafico_productividad($fecha_inicio,$fecha_fin);
+        echo json_encode($resultados);
+    }
+
+    // Gráfico Reproceso
+    public function get_data_reproceso(){
+        $fecha_inicio = $this->input->post("fecha_inicio");
+        $fecha_fin = $this->input->post("fecha_fin");
+        $resultados = $this->Producciones_model->grafico_reproceso($fecha_inicio,$fecha_fin);
+        echo json_encode($resultados);
+    }
+
+
 }

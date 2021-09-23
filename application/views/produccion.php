@@ -79,7 +79,7 @@
                                             </td>
                                             <td class="text-center" style="vertical-align: middle;">
                                                     <?php if($entidad->estado_id == "6"){    ?>
-                                                        <a href="<?php echo base_url()?>movimiento/producciones/programar/<?php echo $entidad->produccion_id;?>" class="btn btn-primary btn-xs">
+                                                        <a href="<?php echo base_url()?>produccion/programar/<?php echo $entidad->produccion_id;?>" class="btn btn-primary btn-xs">
                                                         <span class="glyphicon glyphicon-calendar"></span></a>
                                                     <?php }else{    ?>
                                                         <!-- Seguimiento y Control -->
@@ -87,9 +87,9 @@
                                                             <button type="button" class="btn btn-xs btn-primary btn-view-produccion" data-toggle="modal" data-target="#modal-produccion" value="<?php echo $entidad->produccion_id;?>">
                                                             <span class="glyphicon glyphicon-list-alt"></span>
                                                             </button>
-                                                            <a href="<?php echo base_url()?>movimiento/producciones/progreso/<?php echo $entidad->produccion_id;?>" class="btn btn-xs btn-flat btn-primary"> <span class="glyphicon glyphicon-align-left"></span></a>
-                                                            <a href="<?php echo base_url();?>movimiento/producciones/seguimiento/<?php echo $entidad->produccion_id;?>" class="btn btn-xs btn-flat btn-primary"> <span class="glyphicon glyphicon-copy"></span></a>
-                                                            <a href="<?php echo base_url();?>movimiento/producciones/timeline/<?php echo $entidad->produccion_id;?>" class="btn btn-xs btn-flat btn-primary"> <span class="glyphicon glyphicon-hourglass"></span></a>
+                                                            <a href="<?php echo base_url()?>produccion/progreso/<?php echo $entidad->produccion_id;?>" class="btn btn-xs btn-flat btn-primary"> <span class="glyphicon glyphicon-align-left"></span></a>
+                                                            <a href="<?php echo base_url();?>produccion/seguimiento/<?php echo $entidad->produccion_id;?>" class="btn btn-xs btn-flat btn-primary"> <span class="glyphicon glyphicon-copy"></span></a>
+                                                            <a href="<?php echo base_url();?>produccion/timeline/<?php echo $entidad->produccion_id;?>" class="btn btn-xs btn-flat btn-primary"> <span class="glyphicon glyphicon-hourglass"></span></a>
                                                         </div>
                                                     <?php }  ?>
                                                 </td>
