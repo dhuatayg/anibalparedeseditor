@@ -68,6 +68,7 @@ $(document).ready(function () {
 			tabla.columns(i).search(v).draw();
 		});
 	});
+
 });
 
 $(".mayusculas").click(function () {
@@ -83,3 +84,4 @@ function validacion(campo, valor) {
 		return false;
 	}
 }
+

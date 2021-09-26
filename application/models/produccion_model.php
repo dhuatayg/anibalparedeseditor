@@ -62,27 +62,24 @@ class produccion_model extends CI_Model {
 
     public function grafico_productividad($fecha_inicio,$fecha_fin){	
 		$this->db->select("produccion_codigo as fe, SUM(produccion_cantidad) as pl, SUM(produccion_real) as pr");
-		$this->db->from($tabla);
+		$this->db->from($this->tabla);
 		$this->db->where("produccion_inicio >= ",$fecha_inicio);
-		$this->db->where("produccion_fin <= ",$fecha_fin);
+		$this->db->where("produccion_inicio <= ",$fecha_fin);
 		$this->db->where("produccion_indicador", 1);
 		$this->db->group_by("produccion_codigo");
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
 
-	// Query Gráfico Reproceso
 	public function grafico_reproceso($fecha_inicio,$fecha_fin){	
 		$this->db->select("produccion_codigo as fe, SUM(produccion_real) as pr, SUM(produccion_reprocesado) as re");
-		$this->db->from($tabla);
+		$this->db->from($this->tabla);
 		$this->db->where("produccion_inicio >= ",$fecha_inicio);
-		$this->db->where("produccion_fin <= ",$fecha_fin);
+		$this->db->where("produccion_inicio <= ",$fecha_fin);
 		$this->db->where("produccion_indicador", 1);
 		$this->db->group_by("produccion_codigo");
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
-
-
 
 }

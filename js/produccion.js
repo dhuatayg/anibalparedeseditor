@@ -197,3 +197,6 @@ function quitar_produccion(id) {
 		}
 	);
 }
+
+
+

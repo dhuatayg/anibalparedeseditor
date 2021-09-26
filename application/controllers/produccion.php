@@ -43,10 +43,10 @@ class produccion extends CI_Controller {
     public function programar(){
         $produccion_id =  $this->uri->segment(4);
         $data =array(
-                "produccion" => $this->Producciones_model->getProduccion($produccion_id),
-                "materiales" => $this->Producciones_model->getMateriales($produccion_id),
+                "produccion" => $this->produccion->getProduccion($produccion_id),
+                "materiales" => $this->produccion->getMateriales($produccion_id),
                 "procesos" => $this->Procesos_model->getProcesos(),
-                "maquinas" => $this->Producciones_model->getMaquinas($produccion_id)
+                "maquinas" => $this->produccion->getMaquinas($produccion_id)
         );
         $this->load->view("cuerpo/header");
         $this->load->view("cuerpo/nav");
@@ -57,18 +57,18 @@ class produccion extends CI_Controller {
 	public function view(){
 		$produccion_id= $this->input->post("id");
 		$data = array(
-            "produccion" => $this->Producciones_model->getProduccion($produccion_id),
-            "materiales" => $this->Producciones_model->getMateriales($produccion_id),
-            "trabajos" => $this->Producciones_model->getTrabajo($produccion_id),
-            "indirectos" => $this->Producciones_model->getIndirecto($produccion_id),
+            "produccion" => $this->produccion->getProduccion($produccion_id),
+            "materiales" => $this->produccion->getMateriales($produccion_id),
+            "trabajos" => $this->produccion->getTrabajo($produccion_id),
+            "indirectos" => $this->produccion->getIndirecto($produccion_id),
 		);
 		$this->load->view("produccion/view",$data);
 	}
 
     public function progreso($produccion_id){ 
         $data  = array(
-            'proceso_producciones' => $this->Producciones_model->getProgresos($produccion_id), 
-            'produccion' => $this->Producciones_model->id($produccion_id)
+            'proceso_producciones' => $this->produccion->getProgresos($produccion_id), 
+            'produccion' => $this->produccion->id($produccion_id)
         );     
         $this->load->view("cuerpo/header");
         $this->load->view("cuerpo/nav");
@@ -78,8 +78,8 @@ class produccion extends CI_Controller {
 
     public function seguimiento($id){
         $data =array(
-            "produccion" => $this->Producciones_model->getProduccion($id),
-            "procesos"   => $this->Producciones_model->getProcesos($id)
+            "produccion" => $this->produccion->getProduccion($id),
+            "procesos"   => $this->produccion->getProcesos($id)
         );
         $this->load->view("cuerpo/header");
         $this->load->view("cuerpo/nav");
@@ -89,8 +89,8 @@ class produccion extends CI_Controller {
 
     public function timeline($id){
         $data =array(
-            // "timelines" => $this->Producciones_model->getTimeline($id),
-            // 'produccion' => $this->Producciones_model->id($id)
+            // "timelines" => $this->produccion->getTimeline($id),
+            // 'produccion' => $this->produccion->id($id)
         );
         $this->load->view("cuerpo/header");
         $this->load->view("cuerpo/nav");
@@ -166,7 +166,7 @@ class produccion extends CI_Controller {
     public function get_data_productividad(){
         $fecha_inicio = $this->input->post("fecha_inicio");
         $fecha_fin = $this->input->post("fecha_fin");
-        $resultados = $this->Producciones_model->grafico_productividad($fecha_inicio,$fecha_fin);
+        $resultados = $this->produccion->grafico_productividad($fecha_inicio,$fecha_fin);
         echo json_encode($resultados);
     }
 
@@ -174,7 +174,7 @@ class produccion extends CI_Controller {
     public function get_data_reproceso(){
         $fecha_inicio = $this->input->post("fecha_inicio");
         $fecha_fin = $this->input->post("fecha_fin");
-        $resultados = $this->Producciones_model->grafico_reproceso($fecha_inicio,$fecha_fin);
+        $resultados = $this->produccion->grafico_reproceso($fecha_inicio,$fecha_fin);
         echo json_encode($resultados);
     }
 

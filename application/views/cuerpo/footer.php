@@ -5,7 +5,7 @@
             </div>
         </footer>
         <script>
-            var baseurl = "<?php echo base_url(); ?>";
+            var base_url = "<?php echo base_url(); ?>";
         </script>
         <!-- <script src="<?php echo base_url(); ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
         <script src="<?php echo base_url(); ?>plugins/datatables/table/jquery.dataTables.min.js"></script>
@@ -196,6 +196,216 @@
                     });
                 }
             })();
+
+            $("#div_resultado_productividad").hide();
+	        $("#div_resultado_reproceso").hide();
+
+            
+
+$("#busqueda_productividad").on("click",function(){
+	fecha_inicio = $("#inicio_busqueda").val();
+	fecha_fin = $("#fin_busqueda").val();
+	data_grafico_productividad(base_url,fecha_inicio,fecha_fin);
+	$("#f_ini").html(fecha_inicio);
+	$("#f_fin").html(fecha_fin);
+	$("#div_resultado_productividad").show();
+});
+
+$("#busqueda_reproceso").on("click",function(){
+	fecha_inicio = $("#inicio_busqueda").val();
+	fecha_fin = $("#fin_busqueda").val();
+	data_grafico_reproceso(base_url,fecha_inicio,fecha_fin);
+	$("#f_ini").html(fecha_inicio);
+	$("#f_fin").html(fecha_fin);
+	$("#div_resultado_reproceso").show();
+});
+
+function data_grafico_productividad(base_url,fecha_inicio,fecha_fin){    
+	$.ajax({
+		url: base_url + "produccion/get_data_productividad",
+		type:"POST",
+		data:{
+				fecha_inicio: fecha_inicio,
+				fecha_fin: fecha_fin
+			},
+		dataType:"json",
+		success:function(data){
+			var fecha = new Array();
+			var planificado = new Array();
+			var producido = new Array();
+			$.each(data,function(key, value){
+				fecha.push(value.fe);
+				valor_planificado = Number(value.pl);
+				valor_producido = Number(value.pr);
+				planificado.push(valor_planificado);
+				producido.push(valor_producido);
+			});
+			graficar_productividad(fecha,planificado,producido);
+		}
+	});
+}
+
+function graficar_productividad(fecha,planificado,producido){
+	Highcharts.chart('dproductividad', {
+	chart: {
+		type: 'column'
+	},
+	title: {
+		text: 'Nivel de Productividad'
+	},
+	subtitle: {     // text: 'Año: 2019'
+	},
+	xAxis: {
+		categories: fecha,
+		crosshair: true
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: 'Cantidad de Libros'
+		}
+	},
+	tooltip: {
+		headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+		pointFormat:  '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.2f} productos</b></td></tr>',
+		footerFormat: '</table>',
+		shared: true,
+		useHTML: true
+	},
+	plotOptions: {
+		column: {
+			pointPadding: 0.2,
+			borderWidth: 0
+		},series:{
+		dataLabels:{
+			enabled:true,
+			formatter:function(){
+				return Highcharts.numberFormat(this.y,2)
+			}
+		}
+	}
+	},
+	series: [{
+		name: 'Productos Realizables Estimados',
+		data: planificado
+
+	}, 
+	{
+		name: 'Productos Elaborados Satisfactoriamente',
+		data: producido
+		
+	}
+	]
+	});
+	// Variables
+	var total_producido  = 0;
+	var total_planificado = 0;
+	var indicador = 0;
+	for(var i = 0; i < producido.length;i++){
+		total_producido += producido[i];
+	}
+	for(var i = 0; i < planificado.length;i++){
+		total_planificado += planificado[i];
+	}
+	indicador = (total_producido/total_planificado)*100;
+	var valor_indicador = Number.parseFloat(indicador).toFixed(2);
+	$("#n_pro").html(valor_indicador);
+}
+
+
+    function data_grafico_reproceso(base_url,fecha_inicio,fecha_fin){    
+        $.ajax({
+            url: base_url + "produccion/get_data_reproceso",
+            type:"POST",
+            data:{
+                    fecha_inicio: fecha_inicio,
+                    fecha_fin: fecha_fin
+                },
+            dataType:"json",
+            success:function(data){
+                var fecha = new Array();
+                var producido = new Array();
+                var reprocesado = new Array();
+                $.each(data,function(key, value){
+                    fecha.push(value.fe);
+                    valor_producido = Number(value.pr);
+                    valor_reprocesado = Number(value.re);
+                    producido.push(valor_producido);
+                    reprocesado.push(valor_reprocesado);
+                });
+                graficar_reproceso(fecha,producido,reprocesado);
+            }
+        });
+    }
+
+    function graficar_reproceso(fecha,producido,reprocesado){
+        Highcharts.chart('dreproceso', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Nivel de Productividad'
+        },
+        subtitle: {     // text: 'Año: 2019'
+        },
+        xAxis: {
+            categories: fecha,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Cantidad de Libros'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat:  '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                          '<td style="padding:0"><b>{point.y:.2f} productos</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            },series:{
+            dataLabels:{
+                enabled:true,
+                formatter:function(){
+                    return Highcharts.numberFormat(this.y,2)
+                }
+            }
+        }
+        },
+        series: [{
+            name: 'Unidades Producidas',
+            data: producido
+
+        }, 
+        {
+            name: 'Unidades Reprocesadas',
+            data: reprocesado
+            
+        }
+        ]
+        });
+        // Variables
+        var total_producido  = 0;
+        var total_reprocesado= 0;
+        var indicador = 0;
+        for(var i = 0; i < producido.length;i++){
+            total_producido += producido[i];
+        }
+        for(var i = 0; i < reprocesado.length;i++){
+            total_reprocesado += reprocesado[i];
+        }
+        indicador = (total_reprocesado/total_producido)*100;
+        var valor_indicador = Number.parseFloat(indicador).toFixed(2);
+        $("#r_pro").html(valor_indicador);
+    }
+
         </script>
 
         </html>

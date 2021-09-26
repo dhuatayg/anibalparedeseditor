@@ -51,7 +51,7 @@
                                 <div class="row" id="div_resultado_reproceso">
                                     <div align="center" class="col-md-12">
                                         <div class="form-group">
-                                            <h4>En el grafico durante la fecha <strong id="f_ini"></strong> al <strong id="f_fin"></strong> el Nivel de reproceso obtenido es <strong id="n_reproceso"></strong> %</h4>
+                                            <h4>En el grafico durante la fecha <strong id="f_ini"></strong> al <strong id="f_fin"></strong> el Nivel de reproceso obtenido es <strong id="r_pro"></strong> %</h4>
                                         </div>
                                     </div>
                                 </div> 
