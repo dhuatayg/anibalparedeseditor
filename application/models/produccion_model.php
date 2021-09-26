@@ -13,6 +13,7 @@ class produccion_model extends CI_Model {
         $this->db->join('001_estado e',"e.estado_id = p.estado_id");
         $this->db->join('010_producto pr',"pr.producto_id = p.producto_id");
         $this->db->where('p.produccion_indicador !=','0');
+        $this->db->order_by('p.produccion_codigo');
         $query = $this->db->get();
         return $query->result();
     }

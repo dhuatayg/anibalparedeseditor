@@ -5,7 +5,7 @@
             </div>
         </footer>
         <script>
-            var base_url = "<?php echo base_url(); ?>";
+            var baseurl = "<?php echo base_url(); ?>";
         </script>
         <!-- <script src="<?php echo base_url(); ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
         <script src="<?php echo base_url(); ?>plugins/datatables/table/jquery.dataTables.min.js"></script>
@@ -205,7 +205,7 @@
 $("#busqueda_productividad").on("click",function(){
 	fecha_inicio = $("#inicio_busqueda").val();
 	fecha_fin = $("#fin_busqueda").val();
-	data_grafico_productividad(base_url,fecha_inicio,fecha_fin);
+	data_grafico_productividad(baseurl,fecha_inicio,fecha_fin);
 	$("#f_ini").html(fecha_inicio);
 	$("#f_fin").html(fecha_fin);
 	$("#div_resultado_productividad").show();
@@ -214,7 +214,7 @@ $("#busqueda_productividad").on("click",function(){
 $("#busqueda_reproceso").on("click",function(){
 	fecha_inicio = $("#inicio_busqueda").val();
 	fecha_fin = $("#fin_busqueda").val();
-	data_grafico_reproceso(base_url,fecha_inicio,fecha_fin);
+	data_grafico_reproceso(baseurl,fecha_inicio,fecha_fin);
 	$("#f_ini").html(fecha_inicio);
 	$("#f_fin").html(fecha_fin);
 	$("#div_resultado_reproceso").show();
@@ -222,7 +222,7 @@ $("#busqueda_reproceso").on("click",function(){
 
 function data_grafico_productividad(base_url,fecha_inicio,fecha_fin){    
 	$.ajax({
-		url: base_url + "produccion/get_data_productividad",
+		url: baseurl + "produccion/get_data_productividad",
 		type:"POST",
 		data:{
 				fecha_inicio: fecha_inicio,

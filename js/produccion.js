@@ -198,5 +198,40 @@ function quitar_produccion(id) {
 	);
 }
 
-
-
+function terminar_planificacion(id) {
+	swal(
+		{
+			title: "Deseas confirmar la planificaciòn?",
+			text: "No podrás recuperar este registro!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonClass: "btn-danger",
+			confirmButtonText: "Sí, eliminarlo!",
+			cancelButtonText: "No, cancelar!",
+			closeOnConfirm: false,
+			closeOnCancel: false,
+		},
+		function (isConfirm) {
+			if (isConfirm) {
+				$.ajax({
+					type: "POST",
+					url: baseurl + controlador_area + "eliminar",
+					data: { id: id },
+					cache: false,
+					success: function (result) {
+						var resultado = $.trim(result);
+						if (resultado == "true") {
+							swal("Eliminado!", "Tu registro ha sido eliminado.", "success");
+							location.href = baseurl + controlador_area;
+						} else {
+							alert("Error!" + result);
+						}
+					},
+					error: function (result) {},
+				});
+			} else {
+				swal("Cancelado", "Tu registro esta a salvo :)", "error");
+			}
+		}
+	);
+}
