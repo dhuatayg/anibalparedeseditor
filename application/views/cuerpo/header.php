@@ -1,235 +1,310 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Anibal Paredes Editor S.A.C.</title>
-        <link rel="stylesheet" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/select2/select2.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/select2/select2-bootstrap.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables/dataTables.bootstrap.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables/extensions/Responsive/css/dataTables.responsive.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/daterangepicker/daterangepicker-bs3.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datepicker/datepicker3.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/timepicker/bootstrap-timepicker.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datetimepicker/bootstrap-datetimepicker.min.css">
-        <link rel="stylesheet"  href="<?php echo base_url(); ?>plugins/loading/jquery.loading.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>dist/menu/css/default.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>dist/menu/css/component.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>plugins/sweetalert/sweetalert.css">
-        <script src="<?php echo base_url(); ?>dist/menu/js/modernizr.custom.js"></script>
-        <style>
-            html {
-                position: relative;
-                min-height: 100%;
-            }
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Anibal Paredes Editor S.A.C.</title>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/select2/select2.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/select2/select2-bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables/extensions/Responsive/css/dataTables.responsive.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/daterangepicker/daterangepicker-bs3.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/timepicker/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datetimepicker/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/loading/jquery.loading.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>dist/menu/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>dist/menu/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>plugins/sweetalert/sweetalert.css">
+    <script src="<?php echo base_url(); ?>dist/menu/js/modernizr.custom.js"></script>
+    <style>
+        html {
+            position: relative;
+            min-height: 100%;
+        }
 
-            body {
-                /* Margin bottom by footer height */
-                margin-bottom: 60px;
-            }
+        body {
+            /* Margin bottom by footer height */
+            margin-bottom: 60px;
+        }
 
 
-            .modal-title {
-                line-height: 1;
-            }
+        .modal-title {
+            line-height: 1;
+        }
 
-            .modal-body {
-                /* padding: 8px; */
-            }
-            .page-header {
-                margin: 0 0 0px;
-            }
+        .modal-body {
+            /* padding: 8px; */
+        }
 
-            .footer {
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-                /* Set the fixed height of the footer here */
-                height: 60px;
-                background-color: #f5f5f5;
-            }
+        .page-header {
+            margin: 0 0 0px;
+        }
 
-            .dataTables_empty {
-                text-align: center;
-            }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            /* Set the fixed height of the footer here */
+            height: 60px;
+            background-color: #f5f5f5;
+        }
 
-            .dataTables_filter {
-                display: none;
-            }
+        .dataTables_empty {
+            text-align: center;
+        }
 
-            /*.modal-lg {
+        .dataTables_filter {
+            display: none;
+        }
+
+        /*.modal-lg {
                     width: 1200px;
             }*/
-            .typeahead {
-                z-index: 1051;
+        .typeahead {
+            z-index: 1051;
+        }
+
+        td.details-control {
+            background: url('http://www.datatables.net/examples/resources/details_open.png') no-repeat center center;
+            cursor: pointer;
+        }
+
+        tr.details td.details-control {
+            background: url('http://www.datatables.net/examples/resources/details_close.png') no-repeat center center;
+        }
+
+        #scrollable-dropdown-menu .tt-dropdown-menu {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .table>thead>tr>th,
+        .table>tbody>tr>th,
+        .table>tfoot>tr>th,
+        .table>thead>tr>td,
+        .table>tbody>tr>td,
+        .table>tfoot>tr>td {
+            vertical-align: middle;
+        }
+
+        button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+
+    <style>
+        .section {
+            background: black;
+            padding: 50px 0;
+        }
+
+        .section .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section h1 {
+            font-size: 2.5rem;
+        }
+
+        .section h2 {
+            font-size: 1.3rem;
+        }
+
+
+
+        /* TIMELINE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+        .timeline {
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
+
+        .timeline ol {
+            font-size: 0;
+            width: 100vw;
+            padding: 150px 0;
+            transition: all 1s;
+        }
+
+        .timeline ol li {
+            position: relative;
+            display: inline-block;
+            list-style-type: none;
+            width: 160px;
+            height: 3px;
+            background: #000;
+        }
+
+        .timeline ol li:last-child {
+            width: 280px;
+        }
+
+        .timeline ol li:not(:first-child) {
+            margin-left: 14px;
+        }
+
+        .timeline ol li:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: calc(100% + 1px);
+            bottom: 0;
+            width: 12px;
+            height: 12px;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            background: #F45B69;
+        }
+
+        .timeline ol li div {
+            position: absolute;
+            left: calc(100% + 7px);
+            width: 290px;
+            padding: 15px;
+            font-size: 1rem;
+            white-space: normal;
+            color: white;
+            background: #3FC5A7;
+        }
+
+        .timeline ol li div::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .timeline ol li:nth-child(odd) div {
+            top: -16px;
+            transform: translateY(-100%);
+        }
+
+        .timeline ol li:nth-child(odd) div::before {
+            top: 100%;
+            border-width: 8px 8px 0 0;
+            border-color: #3FC5A7 transparent transparent transparent;
+        }
+
+        .timeline ol li:nth-child(even) div {
+            top: calc(100% + 16px);
+        }
+
+        .timeline ol li:nth-child(even) div::before {
+            top: -8px;
+            border-width: 8px 0 0 8px;
+            border-color: transparent transparent transparent #3FC5A7;
+        }
+
+        .timeline time {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+
+        /* TIMELINE ARROWS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+        .timeline .arrows {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .timeline .arrows .arrow__prev {
+            margin-right: 20px;
+        }
+
+        .timeline .disabled {
+            opacity: .5;
+        }
+
+        .timeline .arrows img {
+            width: 60px;
+            height: 60px;
+        }
+
+
+        /* GENERAL MEDIA QUERIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+        @media screen and (max-width: 599px) {
+
+            .timeline ol,
+            .timeline ol li {
+                width: auto;
             }
 
-            td.details-control {
-                background: url('http://www.datatables.net/examples/resources/details_open.png') no-repeat center center;
-                cursor: pointer;
+            .timeline ol {
+                padding: 0;
+                transform: none !important;
             }
 
-            tr.details td.details-control {
-                background: url('http://www.datatables.net/examples/resources/details_close.png') no-repeat center center;
+            .timeline ol li {
+                display: block;
+                height: auto;
+                background: transparent;
             }
 
-            #scrollable-dropdown-menu .tt-dropdown-menu {
-                max-height: 150px;
-                overflow-y: auto;
-            }
-            .timeline {
-                list-style: none;
-                padding: 20px 0 20px;
-                position: relative;
+            .timeline ol li:first-child {
+                margin-top: 25px;
             }
 
-            .timeline:before {
-                top: 0;
-                bottom: 0;
-                position: absolute;
-                content: " ";
-                width: 3px;
-                background-color: #eeeeee;
+            .timeline ol li:not(:first-child) {
+                margin-left: auto;
+            }
+
+            .timeline ol li div {
+                width: 94%;
+                height: auto !important;
+                margin: 0 auto 25px;
+            }
+
+            .timeline ol li div {
+                position: static;
+            }
+
+            .timeline ol li:nth-child(odd) div {
+                transform: none;
+            }
+
+            .timeline ol li:nth-child(odd) div::before,
+            .timeline ol li:nth-child(even) div::before {
                 left: 50%;
-                margin-left: -1.5px;
+                top: 100%;
+                transform: translateX(-50%);
+                border: none;
+                border-left: 1px solid white;
+                height: 25px;
             }
 
-            .timeline > li {
-                margin-bottom: 20px;
-                position: relative;
+            .timeline ol li:last-child,
+            .timeline ol li:nth-last-child(2) div::before,
+            .timeline ol li:not(:last-child)::after,
+            .timeline .arrows {
+                display: none;
             }
+        }
+    </style>
 
-            .timeline > li:before,
-            .timeline > li:after {
-                content: " ";
-                display: table;
-            }
 
-            .timeline > li:after {
-                clear: both;
-            }
+</head>
 
-            .timeline > li:before,
-            .timeline > li:after {
-                content: " ";
-                display: table;
-            }
-
-            .timeline > li:after {
-                clear: both;
-            }
-
-            .timeline > li > .timeline-panel {
-                width: 46%;
-                float: left;
-                border: 1px solid #d4d4d4;
-                border-radius: 2px;
-                padding: 20px;
-                position: relative;
-                -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-                box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-            }
-
-            .timeline > li > .timeline-panel:before {
-                position: absolute;
-                top: 26px;
-                right: -15px;
-                display: inline-block;
-                border-top: 15px solid transparent;
-                border-left: 15px solid #ccc;
-                border-right: 0 solid #ccc;
-                border-bottom: 15px solid transparent;
-                content: " ";
-            }
-
-            .timeline > li > .timeline-panel:after {
-                position: absolute;
-                top: 27px;
-                right: -14px;
-                display: inline-block;
-                border-top: 14px solid transparent;
-                border-left: 14px solid #fff;
-                border-right: 0 solid #fff;
-                border-bottom: 14px solid transparent;
-                content: " ";
-            }
-
-            .timeline > li > .timeline-badge {
-                color: #fff;
-                width: 50px;
-                height: 50px;
-                line-height: 50px;
-                font-size: 1.4em;
-                text-align: center;
-                position: absolute;
-                top: 16px;
-                left: 50%;
-                margin-left: -25px;
-                background-color: #999999;
-                z-index: 100;
-                border-top-right-radius: 50%;
-                border-top-left-radius: 50%;
-                border-bottom-right-radius: 50%;
-                border-bottom-left-radius: 50%;
-            }
-
-            .timeline > li.timeline-inverted > .timeline-panel {
-                float: right;
-            }
-
-            .timeline > li.timeline-inverted > .timeline-panel:before {
-                border-left-width: 0;
-                border-right-width: 15px;
-                left: -15px;
-                right: auto;
-            }
-
-            .timeline > li.timeline-inverted > .timeline-panel:after {
-                border-left-width: 0;
-                border-right-width: 14px;
-                left: -14px;
-                right: auto;
-            }
-
-            .timeline-badge.primary {
-                background-color: #2e6da4 !important;
-            }
-
-            .timeline-badge.success {
-                background-color: #3f903f !important;
-            }
-
-            .timeline-badge.warning {
-                background-color: #f0ad4e !important;
-            }
-
-            .timeline-badge.danger {
-                background-color: #d9534f !important;
-            }
-
-            .timeline-badge.info {
-                background-color: #5bc0de !important;
-            }
-
-            .timeline-title {
-                margin-top: 0;
-                color: inherit;
-            }
-
-            .timeline-body > p,
-            .timeline-body > ul {
-                margin-bottom: 0;
-            }
-
-            .timeline-body > p + p {
-                margin-top: 5px;
-            }
-
-            .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
-                vertical-align: middle;
-            }
-        </style>
-    </head>
-  <body>
+<body>

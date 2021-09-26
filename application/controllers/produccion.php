@@ -89,8 +89,8 @@ class produccion extends CI_Controller {
 
     public function timeline($id){
         $data =array(
-            "timelines" => $this->Producciones_model->getTimeline($id),
-            'produccion' => $this->Producciones_model->id($id)
+            // "timelines" => $this->Producciones_model->getTimeline($id),
+            // 'produccion' => $this->Producciones_model->id($id)
         );
         $this->load->view("cuerpo/header");
         $this->load->view("cuerpo/nav");
